@@ -1,0 +1,22 @@
+.listItem {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 300px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  h3 {
+    margin: 0;
+    color: red;
+    font-size: 25px;
+  }
+  .key {
+    color: grey;
+    font-weight: 400;
+  }
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+}
