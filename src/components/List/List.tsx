@@ -46,6 +46,7 @@ const List = () => {
   useEffect(() => {
     let elementsToRender: Elements = [];
 
+    // calculating depth
     const calculate = (step: BotStepLinked) => {
       if (typeof (step.depth_level) === 'number') {
         return
@@ -56,11 +57,11 @@ const List = () => {
       }
       const parent = data.find((maybeParent) => step.parent_step_id === maybeParent.step_id)!
       if (typeof (parent.depth_level) !== 'number') {
-        calculate(parent) 
+        calculate(parent)
       }
       step.depth_level = parent.depth_level! + 1
     }
-
+    // calculating Yindex
     const verticalOffset = (step: BotStepLinked) => {
       if (step.parent_step_id === 0) {
         setCounter(counter++);
@@ -71,7 +72,7 @@ const List = () => {
       const index = parent.linked_steps.findIndex((linkedStep) => step.step_id === linkedStep.step_id);
       step.vertical_offset = index + 1;
     }
-
+    //drawing nodes
     for (const step of data) {
       if (step.parent_step_id === null || step.step_id === null) {
         continue
@@ -94,6 +95,7 @@ const List = () => {
       })
 
     }
+    //drawing edges
     for (const step of data) {
       if (step.parent_step_id === null || step.step_id === null || step.parent_step_id === 0) {
         continue
